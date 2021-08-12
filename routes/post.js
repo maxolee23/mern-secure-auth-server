@@ -30,6 +30,18 @@ router.get("/", auth, async (req, res) => {
     }
 })
 
+router.delete("/:id", auth, async (req, res) => {
+    const postToBeDeleted = req.body;
+    try {
+        await Post.findOneAndDelete({id: postToBeDeleted._id});
+        res.status(200).json({message: `post deleted`});
+        // console.log(req.body._id.$oid)
+    } catch (err){
+        console.error(err);
+        res.status(500).send();
+    }
+})
+
 
 
 module.exports = router;
