@@ -31,9 +31,10 @@ router.get("/", auth, async (req, res) => {
 })
 
 router.delete("/:id", auth, async (req, res) => {
-    const postToBeDeleted = req.body;
+    // const posts = await Post.find()
+    await Post.deleteOne({_id: req.params.id})
     try {
-        await Post.findOneAndDelete({id: postToBeDeleted._id});
+        // console.log(req.params.id)
         res.status(200).json({message: `post deleted`});
         // console.log(req.body._id.$oid)
     } catch (err){
