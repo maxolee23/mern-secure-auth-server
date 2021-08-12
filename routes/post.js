@@ -4,10 +4,10 @@ const auth = require("../middleware/auth");
 
 router.post("/", auth, async (req, res) => {
     try {
-        const {title} = req.body;
+        const {title, body} = req.body;
 
         const newPost = new Post({
-            title
+            title, body
         });
 
         const savedPost = await newPost.save();
